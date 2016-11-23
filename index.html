@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <title>Weather App</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css">
+    <link rel="stylesheet " href="index.css">
+</head>
+
+<body ng-controller="WeatherController as vm">
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row ">
+                <h1 align="center">Origin Weather Application</h1>
+                <p align="center">Always know if you'll need an umbrella!</p>
+            </div>
+        </div>
+    </div>
+        <form>
+            <!-- Button group containing city -->
+            <div class="btn-group m-b-24 " role="group " class="center " aria-label="big cities ">
+                <button type="button " class="btn btn-primary " ng-click="vm.callWeatherController( 'San Diego') ">San Diego</button>
+                <button type="button " class="btn btn-primary " ng-click="vm.callWeatherController( 'Bali') ">Bali</button>
+                <button type="button " class="btn btn-primary " ng-click="vm.callWeatherController( 'Whidbey Island') ">Whidbey Island</button>
+                <button type="button " class="btn btn-primary " ng-click="vm.callWeatherController( 'Ludington') ">Ludington</button>
+                <button type="button " class="btn btn-primary " ng-click="vm.callWeatherController( 'Tokyo') ">Tokyo</button>
+            </div>
+            <br>
+        </form>
+        <form ng-submit="vm.calWeatherCotroller(vm.input)">
+            <!-- Button to disply results  -->
+
+            <div class="col-lg-6 ">
+                <div class="input-group">
+                    <input type="text " class="form-control " ng-model="vm.input "></input>
+                    <span class="input-group-btn ">
+       	<button class="btn btn-info " ng-click="vm.callWeatherController(vm.input) " type="button ">GO!</button>
+       	</form>
+	    </span>
+                </div>
+                <br>
+          </div>
+    </div>
+    <!-- Weather Detail Table -->
+    <div class=" ">
+        <div class="col-xs-6 ">
+            <div class="panel panel-info ">
+                <div class="panel-heading"><b>Weather Details</b></div>
+                <div class="panel-body ">
+                    <center><img ng-src=http://openweathermap.org/img/w/{{vm.weatherinfo.weather[0].icon}}.png></center>
+                    <h2>{{vm.weatherinfo.name}}</h2></center>
+                    
+                    <label>Lat/Long: </label>
+                    <p>{{vm.coord.lat}}{{vm.weatherinfo.coord.lon}}</p>
+                    <br>
+                    <label>Temperature (f) </label>
+                    <p>{{vm.weatherinfo.main.temp}}</p>
+                    <label>Pressure </label>
+                    <p>{{vm.weatherinfo.main.pressure}}</p>
+                    <label>Humidity </label>
+                    <p>{{vm.weatherinfo.main.humidity}}</p>
+                    <label>Wind Speed </label>
+                    < <p>{{vm.weatherinfo.wind.speed}}mph</p>
+                </div>
+            </div>
+        </div>
+        <!-- Weather Search History Table -->
+        <div class="col-sm-6 ">
+            <div class="panel panel-info ">
+                <div class="panel-heading "><b>Weather History<b></div>
+                    <div class="panel-body ">
+                    	<table class="table table-striped ">
+                    		<tr ng-repeat="counter in vm.searchHistory">
+                    		<td>{{counter.event}}</td>
+                    		<td class="text-right ">{{counter.time}}<br>{{counter.date}}</td>
+                    	</tr>
+                    </table>
+                </div>
+			</div>
+		</div>
+	</div>
+	<!-- <pre>{{vm.weatherinfo | json}}</pre> -->
+</div>				
+				
+				
+
+                <!-- jQuery -->
+                <script src="//code.jquery.com/jquery.js"></script>
+                <!-- Bootstrap JavaScript -->
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js " integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS " crossorigin="anonymous "></script>
+                <!-- bower:js  -->
+                <script src="bower_components/angular/angular.js"></script>
+                <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+                <script src="bower_components/angular-animate/angular-animate.js"></script>
+                <!-- inject:js -->
+                <script src="app/app.module.js"></script>
+                <script src="app/weather/weather.controller.js"></script>
+
+                				<!-- endinject -->
+</body>
+
+</html>
